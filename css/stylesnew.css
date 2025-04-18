@@ -1,0 +1,1076 @@
+body{
+   
+    margin: 0px;
+    padding: 0px;
+}
+  
+  .navbar {
+    position: fixed;
+    
+    top: 0px; /* height of .top-navbar */
+    left: 0;
+    width: 100%;
+    z-index: 1049; /* below top-navbar (1050), above content */
+  }
+  
+  
+  
+
+/* Show dropdown menu on hover */
+.navbar-nav > .nav-item.dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0; /* Prevents shifting */
+    opacity: 1;
+    background-color: rgb(224, 235, 218); /* Dark blue with slight transparency */
+}
+.dropdown-menu {
+    display: none;
+    opacity: 0;
+    background-color: rgba(211, 152, 24, 0.9); /* Dark blue with slight transparency */
+    border: none; /* Removes default border */
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+
+    /* Style the brand-wrapper */
+    .brand-wrapper {
+        background-color: #198754; /* Green background */
+        display: flex;
+        align-items: center;
+        height: 100%; /* Ensure it fills the navbar */
+        border-radius: 15px;
+        position: relative;
+        left: -800px;
+        opacity: 0;
+        transition: left 0.8s ease-out, opacity 0.8s ease-out;
+    }
+
+    /* When the page loads, animate the logo in */
+    .brand-wrapper.show {
+        left: 0;
+        opacity: 1;
+    }
+
+    /* Rotate Logo Animation */
+@keyframes logoRotate {
+    from {
+        transform: rotate(-760deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* Fix Navbar for Mobile - Slide Out Menu */
+@media screen and (max-width: 480px) {
+    .navbar-collapse {
+        position: fixed;
+        top: 400px;
+        left: -100%; /* Start hidden off-screen */
+        width: 80%; /* Adjust width */
+        height: 100vh;
+        background: #ffc107; /* Bootstrap yellow or your custom one */
+        color: black;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: left 0.4s ease-in-out;
+        z-index: 9999; /* Ensure it's on top */
+    }
+
+    /* When active, the menu slides in */
+    .navbar-collapse.show-menu {
+        left: 0;
+    }
+
+    /* Style the menu items */
+    .navbar-nav {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-item {
+        width: 100%;
+        padding: 15px 0;
+    }
+
+    .nav-link {
+        color: rgb(10, 10, 10);
+        font-size: 1.2rem;
+        display: block;
+        padding: 10px;
+        transition: background 0.3s ease;
+    }
+
+    .nav-link:hover {
+        background: rgba(226, 187, 13, 0.288);
+    }
+
+    /* Close button */
+    .menu-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 24px;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+#inlineSearchForm {
+    min-width: 200px;
+  }
+  
+  #searchInput {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  #searchMessage {
+    font-size: 0.9rem;
+    color: #ffc107;
+    padding: 0.5rem;
+    text-align: center;
+    display: none;
+  }
+  
+
+/* Apply Rotation to Logo */
+
+    /* Style the logo */
+    .brand-wrapper img {
+        height: 80px;
+        border-radius: 50%;
+        animation: logoRotate 0.8s ease-out;
+    }
+
+
+
+    /* Ensure text color contrasts well */
+    .brand-wrapper strong {
+        color: white;
+        font-size: 1.7rem;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 25px;
+    }
+    
+
+
+/* === General Nested Submenu Styling === */
+.dropdown-submenu {
+    position: relative;
+  }
+  
+  .dropdown-submenu > .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 220px;
+    z-index: 1000;
+  }
+  
+  
+
+  
+  /* === Optional: submenu arrow indicator === */
+  .dropdown-submenu > .dropdown-toggle::after {
+    content: "▶";
+    float: right;
+    margin-left: 5px;
+    font-size: 0.6rem;
+    transform: scaleX(0.9);
+  }
+  
+  /* === Mobile-Friendly Support (Click-to-open behavior) === */
+  @media (max-width: 450px) {
+    .nav-item.dropdown:hover > .dropdown-menu,
+    .dropdown-submenu:hover > .dropdown-menu {
+      display: none; /* disable hover behavior on small devices */
+    }
+  
+    .dropdown-menu.show,
+    .dropdown-submenu.show > .dropdown-menu {
+      display: block !important; /* bootstrap applies `.show` class on click */
+    }
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* Welcome Section */
+.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0, 0, 50,0.5);
+    width: 100%;
+    height: 100vh;
+    padding: 0 5%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* Left: Image */
+.welcome-image {
+    width: 35%;
+    height: 100%;
+    z-index: 5;
+}
+
+.welcome-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Right: Content */
+.welcome-content {
+    width: 50%;
+    padding: 20px;
+    text-align: left;
+    font-size: 1.5rem;
+    opacity: 0;
+    transform: translateX(200px);
+    animation: slideInRight 2s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+    
+
+/* Button Styling */
+.explore-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: #198754;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.explore-btn:hover {
+    background: #145a32;
+}
+
+/* Responsive for Small Devices */
+@media screen and (max-width: 768px) {
+    .welcome {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+    }
+
+    .welcome-image, .welcome-content {
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+    .welcome-image img {
+        height: 300px;
+    }
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+.motto {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../images/happiness.webp') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+}
+/* Learn More Button */
+.hero-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #ff7e5f, #feb47b); /* Gradient effect */
+    text-decoration: none;
+    border-radius: 30px; /* Rounded edges */
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+/* Hover Effect */
+.hero-btn:hover {
+    background: linear-gradient(45deg, #feb47b, #ff7e5f); /* Reverse gradient */
+    transform: scale(1.1); /* Slightly enlarge the button */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+}
+
+/* Click Effect */
+.hero-btn:active {
+    transform: scale(0.95); /* Shrinks when clicked */
+}
+
+
+
+  .motto {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('/images/happiness.webp') no-repeat center center fixed; /* Keeps background fixed */
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+}
+
+
+.motto-text {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+.motto-glass-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 3rem 4rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  max-width: 700px;
+  width: 90%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+/* Curtain Effect: Moves Hero Up */
+.scrolled .hero {
+    transform: translateY(-100%);
+    position: absolute;
+}
+
+
+/* Quick Links Section */
+.quick-links-section {
+    position: relative;
+    width: 100%;
+    padding: 60px 5%;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Background Image */
+.quick-links-bg {
+    position: absolute; /* Ensures it stays behind the content */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2; /* Keeps it behind everything */
+}
+
+/* Blue-Black Overlay */
+.quick-links-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 50, 0.6); /* Blue-Black with 0.6 opacity */
+    z-index: -1; /* Sits between the background and content */
+}
+
+
+/* Section Title */
+.section-title {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 40px;
+}
+
+/* Quick Links Grid */
+.quick-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Card Design */
+.quick-link-card {
+    display: flex;
+    align-items: center;
+    background: rgb(223, 173, 10); /* Blue-black semi-transparent */
+    color: white;
+    padding: 0px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Card Image */
+.quick-link-card img {
+    width: 40%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Card Text Content */
+.card-content {
+    flex: 1;
+    padding: 15px;
+    text-align: left;
+}
+
+/* Card Hover Effect */
+.quick-link-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive Grid */
+@media screen and (max-width: 1024px) {
+    .quick-links-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .quick-links-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 column on small screens */
+    }
+
+    .quick-link-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .quick-link-card img {
+        width: 100%;
+        height: 150px;
+        border-radius: 10px 10px 0 0;
+    }
+}
+
+
+/* Gallery Section */
+.gallery-section {
+    position: relative;
+    width: 100%;
+    padding: 60px 5%;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Background Image */
+.gallery-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.1; /* Reduce opacity to make images stand out */
+    z-index: -1;
+}
+
+/* Add a Dark Overlay */
+.gallery-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 50, 0.8); /* Dark blue-black overlay */
+    z-index: -1;
+}
+
+/* Gallery Title */
+.gallery-title {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 40px;
+}
+
+
+/* Masonry Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    justify-content: center;
+}
+
+/* Gallery Items */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Different Size Variations */
+.tall {
+    grid-row: span 2;
+}
+
+.wide {
+    grid-column: span 2;
+}
+
+/* Lightbox Modal */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 10px;
+}
+
+/* Lightbox Close Button */
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Lightbox Navigation */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.6);
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tall, .wide {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    .lightbox img {
+        max-width: 95%;
+    }
+}
+
+/* Join Our Community Section */
+.join-community {
+    position: relative;
+    width: 100%;
+    height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 50px 5%;
+    overflow: hidden;
+}
+
+/* Background Image *//* Keep the Background Image */
+.community-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2; /* Stays behind everything */
+}
+
+/* Add an Overlay Without Breaking Layout */
+.join-community::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,50, 0.8); /* Change this to control color and intensity */
+    z-index: -1; /* Sits between the background and content */
+}
+
+/* Ensure Content Stays Centered */
+.community-content {
+    max-width: 800px;
+    color: white;
+    background: rgba(0, 0, 50, 0.8); /* Keeps the blue-black effect */
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    margin: auto; /* Keeps content centered */
+}
+
+
+/* Title */
+.community-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+/* Paragraph */
+.community-content p {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+}
+
+/* Buttons */
+.community-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.primary-btn {
+    background: linear-gradient(45deg, #ff7e5f, #feb47b);
+    color: white;
+}
+
+.primary-btn:hover {
+    background: linear-gradient(45deg, #feb47b, #ff7e5f);
+    transform: scale(1.1);
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 1px solid white;
+}
+
+.secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+/* Scroll Animation */
+.join-community.visible .community-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .community-content {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/* Footer Section */
+.footer {
+    position: relative;
+    background: black;
+    color: white;
+    padding: 50px 5%;
+    text-align: center;
+}
+
+/* Background Image */
+.footer-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5; /* Background overlay effect */
+    z-index: -1;
+}
+
+/* Footer Container */
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Footer Row */
+.footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+/* Footer Columns */
+.footer-col {
+    flex: 1;
+    min-width: 250px;
+    text-align: left;
+}
+
+/* Footer Headings */
+.footer-col h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Footer Links */
+.footer-col ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-col ul li {
+    margin: 8px 0;
+}
+
+.footer-col ul li a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-col ul li a:hover {
+    color: #fbc531;
+}
+
+/* Contact Info */
+.footer-col p {
+    margin: 5px 0;
+}
+
+/* Social Media Icons */
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons a:hover {
+    transform: scale(1.2);
+    color: #fbc531;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    margin-top: 30px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .footer-row {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Back to Top Button */
+#toTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(45deg, #ff7e5f, #feb47b);
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: none; /* Hidden by default */
+    transition: all 0.3s ease-in-out;
+    z-index: 20;
+}
+
+/* Wiggle Animation on Hover */
+#toTopBtn:hover {
+    animation: wiggle 0.5s infinite;
+    background: linear-gradient(45deg, #feb47b, #ff7e5f);
+}
+
+/* Smooth Wiggle Animation */
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
+}
+
+/* Mobile-Friendly */
+@media screen and (max-width: 600px) {
+    #toTopBtn {
+        font-size: 1.5rem;
+        padding: 8px 12px;
+    }
+}
+
+
+
+/* 👇 ONLY show first-level dropdown on hover of its parent */
+.navbar-nav > .nav-item.dropdown:hover > .dropdown-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  /* 👇 Hide all dropdown menus by default */
+  .dropdown-menu {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  /* 👇 Reveal submenu only on hover of Learning Outcomes */
+  .dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    left: 100%;
+    top: 0;
+  }
+  
+  /* 👇 Optional: Visual cue */
+  .dropdown-submenu > .dropdown-toggle::after {
+    content: ' ▶';
+    float: right;
+    font-size: 0.6rem;
+    margin-left: 6px;
+  }
+  @media (min-width: 451px) {
+    .dropdown-submenu > .dropdown-menu {
+      left: 100%;
+      top: 0;
+      position: absolute;
+    }
+  }
+  
+  @media (max-width: 450px) {
+    .dropdown-submenu > .dropdown-menu {
+      left: 0;
+      top: 100%;
+      position: relative;
+      width: 100%;
+      margin-top: 0;
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+  
+    .dropdown-submenu > .dropdown-toggle::after {
+      content: ' ▼';
+      float: right;
+      margin-left: 6px;
+    }
+  }
+  
+
+  
+
+
+
+
+  .kg-about-section {
+    padding: 80px 0;
+    background-color: #fefefe;
+  }
+  
+  .kg-about-section .section-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #444;
+  }
+  
+  .kg-about-section p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+  }
+  
+
+
+
+  .kg-cards-section {
+    padding: 80px 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .kg-cards-section .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: #444;
+  }
+  
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+  }
+  
+  .kg-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: transform 0.3s ease;
+  }
+  
+  .kg-card:hover {
+    transform: translateY(-8px);
+  }
+  
+  .kg-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #007d5f;
+  }
+  
+  .kg-card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+  }
+  

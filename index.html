@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>BNB Learning Center</title>
+    <link rel="icon" href="images/logo.webp" type="image/webp">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link href="css/stylesnew.css" rel="stylesheet">
+   <link href="css/body.css" rel="stylesheet">
+<style>
+ .hero-carousel {
+  position: relative;
+  width: 100%;
+  height: 160vh;
+  background: url('images/welcome.JPG') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 1;
+  animation: slideInFromTop 1.5s ease-out forwards; /* 👈 This is the key */
+  opacity: 0;
+  transform: translateY(-700px); /* Start above the screen */
+}
+
+@keyframes slideInFromTop {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-content {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.7);
+  opacity: 0;
+  animation: zoomOutFade 1.6s ease-out forwards;
+  z-index: 10;
+}
+
+@keyframes zoomOutFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(1.4);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+.hero-title {
+  font-size: 3.2rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+
+
+.floating-images {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  pointer-events: none; /* Allow clicks to pass through */
+  z-index: -10;
+}
+
+.float-img {
+  position: absolute;
+  width: 120px;
+  height: 130px;
+  border-radius: 50px;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.6);
+  animation: zoomInGrow 1.2s ease-out forwards;
+}
+
+/* Different random positions */
+.img1 { top: 5%; left: 8%; animation-delay: 4.1s; }
+.img2 { top: 0%; left: 25%; animation-delay: 2.3s; }
+.img3 { top: 0%;  left: 250%; animation-delay: 3.5s; }
+.img4 { top: 25%; left: 60%; animation-delay: 4.2s; }
+.img5 { top: 15%; left: 55%; animation-delay: 2.8s; }
+.img6 { top: 3%; left: 90%; animation-delay: 3.6s; }
+.img7  { top: 18%; left: 16%; animation-delay: 2.7s; }
+.img8  { top: 8%;  left: 33%; animation-delay: 2.9s; }
+.img9  { top: 28%; left: 50%; animation-delay: 2.8s; }
+.img10 { top: 12%; left: 66%; animation-delay: 3s; }
+.img11 { top: 6%;  left: 75%; animation-delay: 4.6s; }
+.img12 { top: 22%; left: 95%; animation-delay: 2.2s; }
+
+@keyframes zoomInGrow {
+  0% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.welcome-text-glass {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 80%;
+  padding: 30px 40px;
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  z-index: 2;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.55); /* Darker glass for white text */
+  animation: glassFadeIn 1.2s ease-in-out 1.4s forwards;
+  opacity: 0;
+}
+
+@keyframes glassFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+
+
+/* Achievements Section */
+/* Achievements Section */
+/* Achievements Section - Keep Background Fixed */
+.achievements-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../images/bnb2.webp'); /* Make sure this path is correct */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; /* THIS IS THE IMPORTANT LINE */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+}
+
+.achievements-section::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('images/bnb2.webp') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+}
+
+/* Achievements Content */
+.achievements-content {
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    background: rgba(0, 0, 0, 0.8); /* Dark background for readability */
+    padding: 20px 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 900px;
+}
+
+/* Circular Graph Styling */
+.achievement-graph {
+    position: relative;
+    width: 700px;
+    height: 700px;
+    margin: 20px auto; /* Centering */
+    align-items: center;
+}
+
+.achievement-graph canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Center Content in Graph */
+#centerContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 180px;
+    height: 180px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Fade-in Scroll Animation */
+.achievements-section {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.achievements-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .achievements-content {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.5rem;
+        overflow-x: auto;
+    }
+
+    .achievement-graph {
+        width: 90%;
+        height: auto;
+    }
+
+    #centerContent {
+        width: 140px;
+        height: 140px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+    }
+}
+
+
+
+
+.container-circular {
+    position: relative;
+    width: 700px;
+    height: 700px;
+   
+ display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column; /* Stack elements inside */
+        
+        max-width: 700px; /* Prevent excessive width */
+        margin: 0 auto; /* Center in the section */
+        position: relative;
+    
+  }
+
+  canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  #centerContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 180px;
+    height: 180px;
+    background-color: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .logo-container {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    margin-bottom: 5px;
+  }
+
+  .logo-frame {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #000;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-frame:before,
+  .logo-frame:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #000;
+  }
+
+  .logo-frame:before {
+    transform: rotate(45deg);
+  }
+
+  .logo-frame:after {
+    transform: rotate(-45deg);
+  }
+
+  .logo-letter {
+    color: #f0c14b;
+    font-size: 32px;
+    font-weight: bold;
+    z-index: 2;
+  }
+
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    color: #333;
+  }
+
+
+
+
+
+
+  
+.motto {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('../images/happiness.webp') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+}
+/* Learn More Button */
+.hero-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(45deg, #ff7e5f, #feb47b); /* Gradient effect */
+    text-decoration: none;
+    border-radius: 30px; /* Rounded edges */
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+/* Hover Effect */
+.hero-btn:hover {
+    background: linear-gradient(45deg, #feb47b, #ff7e5f); /* Reverse gradient */
+    transform: scale(1.1); /* Slightly enlarge the button */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+}
+
+/* Click Effect */
+.hero-btn:active {
+    transform: scale(0.95); /* Shrinks when clicked */
+}
+
+
+
+  .motto {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('images/happiness.webp') no-repeat center center fixed; /* Keeps background fixed */
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+}
+
+
+.motto-text {
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+.motto-glass-box {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 3rem 4rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  max-width: 700px;
+  width: 90%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+/* Curtain Effect: Moves Hero Up */
+.scrolled .hero {
+    transform: translateY(-100%);
+    position: absolute;
+}
+
+
+
+  .gallery-section {
+  position: relative;
+  width: 100%;
+  padding: 80px 5% 60px;
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(to bottom, rgba(10, 20, 40, 0.85) 0%, transparent 35%);
+  /* Optional background image already handled */
+}
+
+/* Title Style */
+.gallery-header {
+  margin-bottom: 2rem;
+}
+
+.gallery-header h2 {
+  font-size: 2.5rem;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+
+  .glass-gallery-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  overflow: hidden;
+  margin-top: 4rem;
+  position: relative;
+}
+
+.glass-gallery {
+  display: flex;
+  gap: 2rem;
+  transition: transform 0.5s ease;
+  will-change: transform;
+}
+
+.gallery-item {
+  width: 480px;
+  height: 675px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  transition: transform 0.4s ease;
+  transform: scale(0.75); /* default size */
+}
+
+.gallery-item.left,
+.gallery-item.right {
+  transform: scale(0.9); /* slightly bigger than default */
+}
+
+.gallery-item.center {
+  transform: scale(1.2); /* center is biggest */
+  z-index: 2;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-item.active {
+  transform: scale(1.2);
+  z-index: 2;
+}
+
+/* Arrows */
+.gallery-nav {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Lightbox */
+.gallery-lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 100;
+}
+
+.gallery-lightbox img {
+  max-width: 90%;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+.close-lightbox {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+
+.prev-lightbox,
+.next-lightbox {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #fff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.prev-lightbox {
+  left: 5%;
+}
+
+.next-lightbox {
+  right: 5%;
+}
+@media screen and (max-width: 768px) {
+  .gallery-item {
+    width: 300px;
+    height: 420px;
+    transform: scale(1); /* No scaling on mobile */
+  }
+
+  .gallery-item.left,
+  .gallery-item.right,
+  .gallery-item.center {
+    transform: scale(1);
+  }
+
+  .glass-gallery-wrapper {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .glass-gallery {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .gallery-item {
+    scroll-snap-align: center;
+  }
+
+  .gallery-nav {
+    display: none; /* hide nav arrows */
+  }
+}
+
+
+
+
+.glass-box {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+}
+
+
+
+
+.join-community .glass-box {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  color: white;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+</style>
+</head>
+<body>
+
+
+
+    <nav class="navbar navbar-expand-lg bg-warning navbar-light p-0 m-0">
+        <div class="container d-flex align-items-stretch">
+            <a class="navbar-brand d-flex align-items-center brand-wrapper px-3 py-1" href="index.html">
+                <img src="images/logo.webp" alt="BNB Logo" class="rounded-circle">
+                <strong class="ms-2 text-white">BNB Learning Center</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <!-- About BNB -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="about.html" role="button" data-bs-toggle="dropdown">
+                            About BNB
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="history.html">BNB History</a></li>
+                            <li><a class="dropdown-item" href="vision.html">Our Vision & Mission</a></li>
+                            <li><a class="dropdown-item" href="Values.html">Our Values</a></li>
+                           
+                            <li><a class="dropdown-item" href="board.html">Board of Trustees</a></li>
+                            <li><a class="dropdown-item" href="manage.html"> Our management teams</a></li>
+                            
+                        </ul>
+                    </li>
+
+
+
+
+                    
+                    <!-- Strategy 2034 -->
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="merg.html" role="button" data-bs-toggle="dropdown">
+                        Accademia
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="merg.html">BNB Strategy</a></li>
+                        <li><a class="dropdown-item" href="goals.html">Goals & Objectives</a></li>
+                        <li><a class="dropdown-item" href="milestone.html">Milestones</a></li>
+                    
+                        <!-- Nested dropdown -->
+                        <li class="dropdown-submenu">
+                          <a class="dropdown-item dropdown-toggle" href="#">Learning Outcomes</a>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="kg.html">Kindergarten (KG1-KG3)</a></li>
+                            <li><a class="dropdown-item" href="elementary.html">Elementary (1-6)</a></li>
+                            <li><a class="dropdown-item" href="middle.html">Middle School (7-8)</a></li>
+                            <li><a class="dropdown-item" href="high.html">High School (9-12)</a></li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    
+
+
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="admissionwel.html" role="button" data-bs-toggle="dropdown">
+                        Admissions
+                      </a>
+                      <ul class="dropdown-menu">
+                         
+                          <li><a class="dropdown-item" href="admissionwel.html">Welcome to Admissions</a></li>
+                          <li><a class="dropdown-item" href="admissionreq.html">Admissions Requirements</a></li>
+                          <li><a class="dropdown-item" href="online.html">Online Applications</a></li>
+                         
+                      </ul>
+                  </li>
+
+
+
+
+                  <!-- Community & Support -->
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="community.html" role="button" data-bs-toggle="dropdown">
+                        BNB Community 
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="calender.html">School Calander</a></li>
+                        <li><a class="dropdown-item" href="book.html">Student Handbook</a></li>
+                        <li><a class="dropdown-item" href="fee.html">School Fees</a></li>
+                        <li><a class="dropdown-item" href="special.html">Special events</a></li>
+                        <li><a class="dropdown-item" href="alumni.html">Alumni Engagement</a></li>
+                       
+
+                    </ul>
+                </li>
+
+
+
+
+
+
+                    <!-- Academics & Innovation -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="merg.html" role="button" data-bs-toggle="dropdown">
+                        Resources
+                        </a>
+                        <ul class="dropdown-menu">
+                           
+                            <li><a class="dropdown-item" href="girl.html">GAP Bright Girls Scholarship</a></li>
+                            <li><a class="dropdown-item" href="needy.html">BNB Needy Students Support</a></li>
+                            <li><a class="dropdown-item" href="parent.html"> Parents Support to Needy Students</a></li>
+                            <li><a class="dropdown-item" href="student.html"> Students for Students Support</a></li>
+                            <li><a class="dropdown-item" href="strategy.html"> Strategy 2034</a></li>
+                        </ul>
+                    </li>
+
+                    
+
+                     <!-- Strategy 2034 -->
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="no.html" role="button" data-bs-toggle="dropdown">
+                            News & Activities
+                        </a>
+                        <ul class="dropdown-menu">
+                           
+                          <li><a class="dropdown-item" href="volenteer.html">Volunteer and internship opportunities</a></li>
+                            <li><a class="dropdown-item" href="no.html">Vacancies</a></li>
+                            <li><a class="dropdown-item" href="sport.html"> Sports</a></li>
+                            <li><a class="dropdown-item" href="art.html">Club Activities</a></li>
+                            
+                            <li><a class="dropdown-item" href="contact.html">Contact Us</a></li>
+                        </ul>
+                    </li>
+
+
+<!-- Strategy 2034 -->
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                          How may I help?
+                        </a>
+                        <ul class="dropdown-menu">
+                           
+                          <li><a class="dropdown-item" href="sponser.html">Sponsor a need student</a></li>
+                            <li><a class="dropdown-item" href="donate.html">Donate to the Needy Students Fund</a></li>
+                            <li><a class="dropdown-item" href="join.html"> Join the alumni group</a></li>
+                           
+                        </ul>
+                    </li>
+
+
+
+
+                    <!-- Contact Us -->
+                   
+                    <li class="nav-item">
+                      <form class="d-flex align-items-center" id="inlineSearchForm" onsubmit="return false;" style="margin-top: 20px;">
+                        <input id="searchInput" class="form-control form-control-sm me-2" type="search" placeholder="Search this page…" aria-label="Search">
+                      </form>
+                    </li>
+                    
+                    <!-- Portal Login -->
+                    <li class="nav-item">
+                        <a class="btn btn-light text-warning fw-bold" href="login.html">Portal Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <section class="hero-carousel hero-slide-in">
+      <div class="hero-content">
+        <h1 class="hero-title">Welcome to BNB Learning Center</h1>
+      </div>
+
+      <div class="floating-images">
+        <img src="images/0.webp" alt="" class="float-img img1">
+        <img src="images/1.webp" alt="" class="float-img img2">
+        <img src="images/2.webp" alt="" class="float-img img3">
+        <img src="images/3.webp" alt="" class="float-img img4">
+        <img src="images/4.webp" alt="" class="float-img img5">
+        <img src="images/5.webp" alt="" class="float-img img6">
+        <img src="images/6.webp" alt="" class="float-img img7">
+        <img src="images/7.webp" alt="" class="float-img img8">
+        <img src="images/8.webp" alt="" class="float-img img9">
+        <img src="images/9.webp" alt="" class="float-img img10">
+        <img src="images/10.webp" alt="" class="float-img img11">
+        <img src="images/11.webp" alt="" class="float-img img12">
+      </div>
+      
+      <div class="welcome-text-glass">
+        <p>
+          Welcome to <strong>BNB Learning Center</strong>, where every student’s journey is a vibrant adventure filled with happiness, discovery, growth, and limitless innovation.
+          Here, we spark curiosity, nurture creativity, and build a solid foundation for a future brimming with joy and endless possibilities.
+          <br><br>
+          Welcome to a place where learning is not just a journey, it’s a celebration of excitement, wonder, and boundless fun.
+        </p>
+      </div>
+      
+      
+    </section>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <section class="welcome">
+    <!-- Left: Image -->
+    <div class="welcome-image">
+        <img src="images/long hap.webp" alt="Welcome Image">
+    </div>
+
+    <!-- Right: Content -->
+    <div class="welcome-content">
+        <h1>Welcome to BNB Learning Center</h1>
+        <p>At BNB Learning Center, we believe in nurturing young minds through innovation, dedication, and a commitment to excellence. Our learning environment fosters curiosity, creativity, and critical thinking, ensuring that every student reaches their full potential. With a strong emphasis on both academic growth and character development, we prepare students to excel in an ever-evolving world. Our passionate educators and advanced learning resources create a dynamic space where knowledge meets opportunity. Join us on a journey of discovery, empowerment, and lifelong learning.</p>
+        <a href="community.html" class="explore-btn">Explore</a>
+    </div>
+</section>
+
+
+<!-- Achievements Section (Now Uses New Background) -->
+<section class="achievements-section " >
+  <div class="achievements-content ">
+      <h2>Our Achievements</h2>
+      <p>Celebrating success and excellence.</p>
+
+      <!-- Container for the Circular Infographic -->
+      <div class="container-circular">
+          <canvas id="infographicCanvas"></canvas>
+          <div id="centerContent">
+              <div class="title">BNB</div>
+              <div class="subtitle">Learning Center</div>
+          </div>
+      </div>
+  </div>
+</section>
+
+
+<!-- Motto Section (Revealed when scrolling) -->
+<section class="motto">
+  <div class="motto-glass-box">
+    <h2 class="motto-text">Empowering the Future with Knowledge</h2>
+  </div>
+</section>
+
+
+
+
+<section class="gallery-section">
+  <div class="gallery-header">
+    <h2>Explore our moments</h2>
+  </div>
+
+  <div class="glass-gallery-wrapper">
+    <button class="gallery-nav prev" onclick="moveGallery(-1)">&#10094;</button>
+    <div class="glass-gallery" id="glassGallery">
+      <!-- Your .gallery-item blocks here -->
+
+
+      
+
+<div class="glass-gallery-wrapper">
+  <img src="images/school-history.webp" alt="Gallery Background" class="gallery-bg">
+
+  <button class="gallery-nav prev" onclick="moveGallery(-1)">&#10094;</button>
+  <button class="gallery-nav next" onclick="moveGallery(1)">&#10095;</button>
+  
+
+  <div class="glass-gallery" id="glassGallery">
+    <div class="gallery-item" onclick="openLightbox(0)">
+      <img src="images/IMG_8422.webp" alt="Gallery 1" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox(1)">
+      <img src="images/IMG_8435.webp" alt="Gallery 2" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox(2)">
+      <img src="images/IMG_8410.webp" alt="Gallery 3" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox(3)">
+      <img src="images/IMG_8439.webp" alt="Gallery 4" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox(4)">
+      <img src="images/IMG_8382.webp" alt="Gallery 5" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox(0)">
+      <img src="images/IMG_8422.webp" alt="Gallery 1" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox(1)">
+      <img src="images/IMG_8435.webp" alt="Gallery 2" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox(2)">
+      <img src="images/IMG_8410.webp" alt="Gallery 3" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox(3)">
+      <img src="images/IMG_8439.webp" alt="Gallery 4" />
+    </div>
+    <div class="gallery-item" onclick="openLightbox(4)">
+      <img src="images/IMG_8382.webp" alt="Gallery 5" />
+    </div>
+  </div>
+
+  
+</div>
+
+<!-- Fullscreen Lightbox -->
+<div class="gallery-lightbox" id="galleryLightbox">
+  <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+  <img id="lightbox-img" src="" alt="Full Image">
+  <button class="prev-lightbox" onclick="changeImage(-1)">❮</button>
+  <button class="next-lightbox" onclick="changeImage(1)">❯</button>
+</div>
+
+    </div>
+    <button class="gallery-nav next" onclick="moveGallery(1)">&#10095;</button>
+  </div>
+</section>
+
+
+<section class="quick-links-section">
+  <!-- Background Image -->
+  <img src="images/blue.webp" alt="Background Image" class="quick-links-bg">
+
+  <div class="quick-links-content">
+    <h2 class="section-title">Explore BNB Learning Center</h2>
+
+    <div class="quick-links-grid">
+      <!-- Each card below now has .glass-box for glassmorphism -->
+      <div class="quick-link-card glass-box" onclick="location.href='about.html'">
+        <img src="images/happiness.webp" alt="About Us">
+        <div class="card-content">
+          <h3>About Us</h3>
+          <p>Discover the mission and values that drive BNB Learning Center.</p>
+        </div>
+      </div>
+
+      <div class="quick-link-card glass-box" onclick="location.href='history.html'">
+        <img src="images/long.webp" alt="Our History">
+        <div class="card-content">
+          <h3>Our History</h3>
+          <p>Explore the rich history that shapes our legacy of excellence.</p>
+        </div>
+      </div>
+
+      <div class="quick-link-card glass-box" onclick="location.href='strategy.html'">
+        <img src="images/IMG_8422.webp" alt="Strategy 2034">
+        <div class="card-content">
+          <h3>Strategy 2034</h3>
+          <p>Learn about our long-term vision and future growth strategies.</p>
+        </div>
+      </div>
+
+      <div class="quick-link-card glass-box" onclick="location.href='governance.html'">
+        <img src="images/IMG_8382.webp" alt="Our Management">
+        <div class="card-content">
+          <h3>Our Management</h3>
+          <p>Meet the leadership team guiding our institution to success.</p>
+        </div>
+      </div>
+
+      <div class="quick-link-card glass-box" onclick="location.href='academics.html'">
+        <img src="images/IMG_8428.webp" alt="Academics & Innovation">
+        <div class="card-content">
+          <h3>Academics & Innovation</h3>
+          <p>Discover our cutting-edge academic programs and research.</p>
+        </div>
+      </div>
+
+      <div class="quick-link-card glass-box" onclick="location.href='extracurricular.html'">
+        <img src="images/IMG_8435.webp" alt="Extracurricular">
+        <div class="card-content">
+          <h3>Extracurricular</h3>
+          <p>Explore activities that enhance student growth beyond the classroom.</p>
+        </div>
+      </div>
+
+      <div class="quick-link-card glass-box" onclick="location.href='happy.html'">
+        <img src="images/long.webp" alt="Happy Classrooms">
+        <div class="card-content">
+          <h3>Happy Classrooms</h3>
+          <p>See how we foster joy and creativity in learning environments.</p>
+        </div>
+      </div>
+
+      <div class="quick-link-card glass-box" onclick="location.href='sports.html'">
+        <img src="images/IMG_8439.webp" alt="Sports">
+        <div class="card-content">
+          <h3>Sports</h3>
+          <p>Encouraging teamwork and excellence through our sports programs.</p>
+        </div>
+      </div>
+
+      <div class="quick-link-card glass-box" onclick="location.href='arts.html'">
+        <img src="images/happy1.webp" alt="Arts">
+        <div class="card-content">
+          <h3>Arts</h3>
+          <p>Experience creativity and expression in our fine arts programs.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class="join-community">
+  <!-- Background Image -->
+  <img src="images/pan5.webp" alt="Community Background" class="community-bg">
+
+  <!-- Glassmorphic Wrapper -->
+  <div class="community-content glass-box">
+    <h2>Become a Part of BNB Learning Center</h2>
+    <p>Join a vibrant learning community dedicated to academic excellence, innovation, and global impact.</p>
+
+    <div class="community-buttons">
+      <a href="no.html" class="btn primary-btn">Join Now</a>
+      <a href="contact.html" class="btn secondary-btn">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Back to Top Button -->
+<button id="toTopBtn" title="I'm waiting for you!">↑</button>
+
+    <footer class="footer">
+        <!-- Background Image -->
+        <img src="images/footer-bg.jpg" alt="Footer Background" class="footer-bg">
+    
+        <div class="footer-container m-5">
+            <div class="footer-row">
+                <!-- About Section -->
+                <div class="footer-col">
+                    <h3>About Us</h3>
+                    <p>BNB Learning Center is dedicated to academic excellence and innovation, empowering students for a brighter future.</p>
+                </div>
+    
+                <!-- Quick Links -->
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="academics.html">Academics</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Contact Info -->
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <p>Email: info@bnblearning.com</p>
+                    <p>Phone: +123 456 7890</p>
+                    <p>Address: 123 Learning St, Knowledge City</p>
+                </div>
+    
+                <!-- Social Media -->
+                <div class="footer-col">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Copyright -->
+            <div class="footer-bottom">
+                <p>&copy; 2024 BNB Learning Center. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- Bootstrap JS (for dropdowns and navbar functionality) -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ <!-- Bootstrap JS -->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ 
+ 
+ <script>
+ document.addEventListener("DOMContentLoaded", function () {
+     const dropdownLinks = document.querySelectorAll(".nav-item.dropdown > .nav-link");
+ 
+     dropdownLinks.forEach(link => {
+         link.addEventListener("click", function (event) {
+             const dropdownMenu = this.nextElementSibling;
+             const isOpen = dropdownMenu.classList.contains("show");
+ 
+             // If dropdown is not open, navigate to the link's href
+             if (!isOpen) {
+                 window.location.href = this.href;
+             }
+         });
+     });
+ });
+ 
+ </script>
+ 
+     <!-- JavaScript to trigger animation on page load -->
+     <script>
+         document.addEventListener("DOMContentLoaded", function() {
+             document.querySelector(".brand-wrapper").classList.add("show");
+         });
+     </script>
+ 
+ <script>
+     document.addEventListener("DOMContentLoaded", function () {
+     const welcomeSection = document.querySelector(".welcome");
+ 
+     function fadeInSection() {
+         const sectionPosition = welcomeSection.getBoundingClientRect().top;
+         const screenPosition = window.innerHeight / 1.2;
+ 
+         if (sectionPosition < screenPosition) {
+             welcomeSection.classList.add("fade-in");
+         }
+     }
+ 
+     window.addEventListener("scroll", fadeInSection);
+     fadeInSection();
+ });
+ 
+ </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const achievementSection = document.querySelector(".achievements-section");
+
+  function revealOnScroll() {
+      const sectionPosition = achievementSection.getBoundingClientRect().top;
+      const screenPosition = window.innerHeight / 1.3;
+
+      if (sectionPosition < screenPosition) {
+          achievementSection.classList.add("visible");
+      }
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
+});
+
+</script>
+<script src="circularInfo.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const menuToggler = document.querySelector(".navbar-toggler");
+    const navMenu = document.querySelector(".navbar-collapse");
+
+    menuToggler.addEventListener("click", function () {
+        navMenu.classList.toggle("show-menu");
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener("click", function (event) {
+        if (!navMenu.contains(event.target) && !menuToggler.contains(event.target)) {
+            navMenu.classList.remove("show-menu");
+        }
+    });
+});
+
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slider = document.getElementById('quickLinksSlider')
+      let index = 0
+    
+      // Wait 4 seconds before starting the first slide transition
+      setTimeout(() => {
+        setInterval(() => {
+          index = (index + 1) % 3
+          slider.style.transform = `translateX(-${index * 100}%)`
+        }, 4000)
+      }, 4000)
+    })
+    </script>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+      let activeIndex = 2 // Start from center
+      const slides = document.querySelectorAll('.glass-slide')
+      const carousel = document.getElementById('glassCarousel')
+    
+      function updateSlides() {
+        slides.forEach((slide, i) => {
+          slide.classList.remove('active')
+        })
+        if (slides[activeIndex]) {
+          slides[activeIndex].classList.add('active')
+        }
+    
+        const offset = (activeIndex - 2) * 220 // Approximate width + gap
+        carousel.style.transform = `translateX(-${offset}px)`
+      }
+    
+      function moveCarousel(direction) {
+        activeIndex += direction
+        if (activeIndex < 0) activeIndex = 0
+        if (activeIndex > slides.length - 1) activeIndex = slides.length - 1
+        updateSlides()
+      }
+    
+      // Initial
+      updateSlides()
+    </script>
+
+
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const gallery = document.getElementById('glassGallery')
+    const items = document.querySelectorAll('.gallery-item')
+    const lightbox = document.getElementById('galleryLightbox')
+    const lightboxImg = document.getElementById('lightbox-img')
+
+    let galleryIndex = 2
+
+    function updateGallery() {
+  items.forEach((item, i) => {
+    item.classList.remove('left', 'center', 'right')
+
+    if (i === galleryIndex - 1) item.classList.add('left')
+    else if (i === galleryIndex) item.classList.add('center')
+    else if (i === galleryIndex + 1) item.classList.add('right')
+  })
+
+  const offset = (galleryIndex - 2) * 500 // 480 + gap
+  gallery.style.transform = `translateX(-${offset}px)`
+}
+
+
+    function moveGallery(direction) {
+      galleryIndex += direction
+      if (galleryIndex < 0) galleryIndex = 0
+      if (galleryIndex >= items.length) galleryIndex = items.length - 1
+      updateGallery()
+    }
+
+    function openLightbox(index) {
+      galleryIndex = index
+      lightbox.style.display = 'flex'
+      lightboxImg.src = items[galleryIndex].querySelector('img').src
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none'
+    }
+
+    function changeImage(direction) {
+      galleryIndex += direction
+      if (galleryIndex < 0) galleryIndex = 0
+      if (galleryIndex >= items.length) galleryIndex = items.length - 1
+      lightboxImg.src = items[galleryIndex].querySelector('img').src
+      updateGallery()
+    }
+
+    // Handle Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        closeLightbox()
+      }
+    })
+
+    // Close when clicking outside the image
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) {
+        closeLightbox()
+      }
+    })
+
+    // Initial render
+    updateGallery()
+
+    // Make these functions global for inline HTML onclick support
+    window.moveGallery = moveGallery
+    window.openLightbox = openLightbox
+    window.closeLightbox = closeLightbox
+    window.changeImage = changeImage
+  })
+</script>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const toTopBtn = document.getElementById("toTopBtn");
+
+  // Show button after scrolling down
+  window.addEventListener("scroll", function () {
+      if (window.scrollY > 300) {
+          toTopBtn.style.display = "block";
+      } else {
+          toTopBtn.style.display = "none";
+      }
+  });
+
+  // Smooth scroll to top
+  toTopBtn.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  // Funny Quotes on Hover
+  const wisdomQuotes = [
+      "Up you go, wise traveler! ⬆️",
+      "Back to the wisdom peak! 🧠",
+      "The scroll of life must go up! 📜",
+      "Are you lost? Follow me! 🚀",
+      "Climbing back to knowledge! 📖",
+      "No pain, no gain. Scroll up! 🏋️‍♂️"
+  ];
+
+  toTopBtn.addEventListener("mouseover", function () {
+      const randomQuote = wisdomQuotes[Math.floor(Math.random() * wisdomQuotes.length)];
+      toTopBtn.title = randomQuote; // Changes tooltip dynamically
+  });
+});
+
+</script>
+
+
+
+
+
+
+
+
+  <script>
+    document.querySelectorAll('.dropdown-submenu > a').forEach(el => {
+      el.addEventListener('click', function (e) {
+        e.preventDefault()
+        const submenu = this.nextElementSibling
+        submenu.classList.toggle('show')
+      })
+    })
+  </script>
+  
+
+
+
+</body>
+</html>
